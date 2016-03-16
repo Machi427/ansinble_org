@@ -1,0 +1,8 @@
+---
+ - tasks:
+   - name: Dockerをインストール
+     shell: curl -sSL https://get.docker.com/ | sh
+   - name: docker groupに{{username}}を追加
+     command: usermod -aG docker {{username}}
+   - name: dockerを起動
+     service: name=docker state=started

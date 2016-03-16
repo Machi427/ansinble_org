@@ -1,0 +1,7 @@
+---
+ - name: nodejsrをインストール
+   hosts: aws
+   remote_user: ec2-user
+   roles:
+    - nodejs
+   

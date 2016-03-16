@@ -1,0 +1,7 @@
+---
+ - name: Node.jsをインストール
+   shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
+ - name: reflect .bashrc
+   shell: source ~/.bashrc chdir=/home/{{username}}
+ - name: install nvm v0.12.4
+   shell: /bin/bash -lc "nvm install v0.12.4 && nvm alias default v0.12.4" chdir=/home/{{username}}

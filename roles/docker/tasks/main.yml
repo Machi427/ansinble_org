@@ -1,0 +1,11 @@
+---
+ - name: Dockerをインストール
+   shell: curl -sSL https://get.docker.com/ | sh
+ - name: docker groupに{{username}}を追加
+   command: usermod -aG docker {{username}}
+ - name: dockerを起動
+   service: name=docker state=started
+ - name: Docker Compeseをインストール
+   shell: curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+ - name: docker-compose パーミッションの設定
+   file: path=/usr/local/bin/docker-compose mode=0755

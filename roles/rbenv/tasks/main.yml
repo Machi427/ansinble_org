@@ -1,0 +1,26 @@
+---
+ - git: repo=git@github.com/sstephenson/rbenv.git dest=/home/{{username}}/.rbenv
+   shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+   shell: echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+   command: exec $SHELL -l
+ - git: repo=git@github.com/sstephenson/ruby-build.git dest=/home/{{username}}/.rbenv/plugins/ruby-build
+   yum: name={{item}} enablerepo==remi,epel state=latest
+   sudo: yes
+   with items:
+     - libyaml
+     - libyaml-devel
+     - zlib
+     - zlib-devel
+     - readline
+     - readline-devel
+     - openssl
+     - openssl-devel
+     - libxml2
+     - libxml2-devel
+     - libxslt
+     - libxslt-devel
+     - gcc
+     - glibc   
+ - shell: rbenv install -v 2.2.3
+ - shell: rbenv rehash
+ - shell: rbenv global 2.2.5
