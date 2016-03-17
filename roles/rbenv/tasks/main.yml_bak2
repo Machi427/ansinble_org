@@ -23,11 +23,12 @@
       - libxslt
       - libxslt-devel
       - gcc
-      - glibc 
-      - bzip2 
+      - glibc  
   - name: add .rbenv/bin to $PATH
     lineinfile: dest=/home/{{username}}/.bash_profile line='export PATH="$HOME/.rbenv/bin:$PATH"' regexp=PATH.*rbenv create=yes 
   - name: add rbenv init
     lineinfile: dest=/home/{{username}}/.bash_profile line='eval "$(rbenv init -)\"' regexp=eval.*rbenv create=yes
   - name: Ruby環境設定
-    shell: /bin/bash -lc "rbenv install -v 2.2.3 && rbenv global 2.2.3 && rbenv rehash" chdir=/home/{{username}} 
+    command: "rbenv install -v 2.2.3" 
+    command: "rbenv global 2.2.3"
+    command: "rbenv rehash"
