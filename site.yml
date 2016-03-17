@@ -1,4 +1,6 @@
 ---
-  - name: site.yml
+  - name: nodejs install
+    include: nodejsserver.yml
+  - name: docker install
     include: dockerserver.yml
    
