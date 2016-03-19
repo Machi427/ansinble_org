@@ -1,0 +1,16 @@
+---
+- name: EC2インスタンスの情報を取得
+  ec2_facts:
+ 
+- name: AMIを作成
+  local_action:
+    module: ec2_ami
+    delete_snapshot: "yes"
+    description: "{{ ansible_ec2_security_groups }} server AMI"
+    instance_id: "{{ ansible_ec2_instance_id }}"
+    name: "{{ ansible_ec2_security_groups }}"
+    no_reboot: "no"
+    region: "ap-northeast-1"
+    state: "present"
+    wait: "yes"
+    wait_timeout: 600

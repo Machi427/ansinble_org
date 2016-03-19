@@ -1,0 +1,5 @@
+---
+ - name: elasticsearch install
+   include: elasticsearch.yml
+ - name: kibana install
+   include: kibana.yml

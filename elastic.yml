@@ -1,0 +1,7 @@
+---
+ - name: elasticをインストール
+   hosts: mng
+   remote_user: machi
+   roles:
+    - elastic
+   

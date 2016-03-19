@@ -1,0 +1,20 @@
+---
+- name: EC2インスタンスの情報を取得
+  ec2_facts:
+ 
+- name: オートリカバリを設定
+  local_action:
+    module: ec2_metric_alarm
+    alarm_actions: ["arn:aws:automate:ap-northeast-1:ec2:recover"]
+    comparison: ">="
+    description: "Created from Ansible Playbook"
+    dimensions: "{'InstanceId':'{{ ansible_ec2_instance_id }}'}"
+    evaluation_periods: 3
+    metric: "StatusCheckFailed_System"
+    name: "awsec2-{{ ansible_ec2_instance_id }}-High-Status-Check-Failed-System-"
+    namespace: "AWS/EC2"
+    period: 60
+    region: "ap-northeast-1"
+    state: "present"
+    statistic: "Minimum"
+    threshold: 1.0

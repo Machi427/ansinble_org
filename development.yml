@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - role: security_group
+    - role: ec2
+  vars:
+    ami_image: ami-cbf90ecb
+    key_name: "/home/machi/.ssh/aws_okaniwa.pem" # AWSに登録したキーペア名を入力
+    my_ip: 157.7.220.18/32 # アクセス元のIPアドレス
+    group_name: "development"
+    instance_type: "t2.micro"
+    device_name: "/dev/xvda"
+    device_type: "gp2"
+    volume_size: 20 # EBSのディスクサイズ（GB）
+ 
+- hosts: tag_Name_development
+  remote_user: ec2-user
+  gather_facts: no
+  roles:
+    - role: ami
+    - role: cloud_watch

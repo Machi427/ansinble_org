@@ -1,0 +1,17 @@
+---
+ - name: java download
+   get_url: url=http://javadl.oracle.com/webapps/download/AutoDL?BundleId=116020 dest=/usr/local/src
+   become: yes
+ - name: java install
+   command: rpm -ivh jre-8u73-linux-x64.rpm chdir=/usr/local/src
+   become: yes
+ - name: create a directory
+   file: path=/home/{{username}}/elasticsearch state=directory
+ - name: download elasticsearch2.2.0
+   get_url: url=https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.0/elasticsearch-2.2.0.tar.gz dest=/home/{{username}}/elasticsearch
+ - name: ソースコードを解凍
+   shell: tar zxf elasticsearch-2.2.0.tar.gz chdir=/home/{{username}}/elasticsearch
+ - name: install licence plugin
+   shell: bin/plugin install license  chdir=/home/{{username}}/elasticsearch/elasticsearch-2.2.0
+ - name: install marvel-agent
+   shell: bin/plugin install marvel-agent chdir=/home/{{username}}/elasticsearch/elasticsearch-2.2.0

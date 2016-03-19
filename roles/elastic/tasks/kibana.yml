@@ -1,0 +1,11 @@
+---
+ - name: create a directory
+   file: path=/home/{{username}}/kibana state=directory
+ - name: download kibana4.4.0
+   get_url: url=https://download.elastic.co/kibana/kibana/kibana-4.4.0-linux-x64.tar.gz dest=/home/{{username}}/kibana
+ - name: ソースコードを解凍
+   shell: tar zxf kibana-4.4.0-linux-x64.tar.gz chdir=/home/{{username}}/kibana
+ - name: install sensu
+   shell: bin/kibana plugin --install elastic/sense  chdir=/home/{{username}}/kibana/kibana-4.4.0-linux-x64
+ - name: install marvel
+   shell: bin/kibana plugin --install elasticsearch/marvel chdir=/home/{{username}}/kibana/kibana-4.4.0-linux-x64
