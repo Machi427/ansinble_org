@@ -1,5 +1,7 @@
 ---
- - name: elasticsearch install
-   include: elasticsearch.yml
- - name: kibana install
-   include: kibana.yml
+ - name: logstash install
+   include: logstash.yml
+ #- name: elasticsearch install
+ #  include: elasticsearch.yml
+ #- name: kibana install
+ #  include: kibana.yml

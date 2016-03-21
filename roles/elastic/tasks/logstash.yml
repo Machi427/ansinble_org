@@ -1,0 +1,9 @@
+---
+ - name: create a directory
+   file: path=/home/{{username}}/logstash state=directory
+ - name: download logstash2.2.0
+   get_url: url=https://download.elastic.co/logstash/logstash/logstash-all-plugins-2.2.0.tar.gz dest=/home/{{username}}/logstash
+ - name: ソースコードを解凍
+   shell: tar zxf logstash-all-plugins-2.2.0.tar.gz chdir=/home/{{username}}/logstash
+ - name: アーカイブファイルを削除
+   shell: rm -rf logstash-all-plugins-2.2.0.tar.gz chdir=/home/{{username}}/logstash

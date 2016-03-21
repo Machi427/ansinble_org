@@ -11,6 +11,8 @@
    get_url: url=https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.0/elasticsearch-2.2.0.tar.gz dest=/home/{{username}}/elasticsearch
  - name: ソースコードを解凍
    shell: tar zxf elasticsearch-2.2.0.tar.gz chdir=/home/{{username}}/elasticsearch
+ - name: アーカイブを削除
+   shell: rm -rf elasticsearch-2.2.0.tar.gz chdir=/home/{{username}}/elasticsearch
  - name: install licence plugin
    shell: bin/plugin install license  chdir=/home/{{username}}/elasticsearch/elasticsearch-2.2.0
  - name: install marvel-agent
