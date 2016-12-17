@@ -7,7 +7,7 @@
   - name: ruby-build をgit clone
     git: repo=https://@github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
   - name: 依存パッケージのインストール
-    yum: name={{item}} enablerepo=remi enablerepo=epel state=latest
+    yum: name={{item}}  state=latest
     become: yes
     with_items:
       - libyaml
